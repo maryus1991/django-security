@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -51,8 +51,8 @@ INSTALLED_APPS = [
 
 ]
 
-RECAPTCHA_PUBLIC_KEY  = "6Le-cBgrAAAAAMtouFjnBb5VDM7wwWpyhBw9Rs18"
-RECAPTCHA_PRIVATE_KEY = "6Le-cBgrAAAAAHYlSktNAuSUYmOKDuvRpAFN1-5-"
+RECAPTCHA_PUBLIC_KEY  = str(os.getenv("RECAPTCHA_PUBLIC_KEY"))
+RECAPTCHA_PRIVATE_KEY = str(os.getenv("RECAPTCHA_PRIVATE_KEY"))
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
