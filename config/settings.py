@@ -62,9 +62,16 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+
+    # 2fa
     'django_otp.middleware.OTPMiddleware',
+
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+
+    # auto time out
+    'django_auto_logout.middleware.auto_logout'
+
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -80,6 +87,9 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+
+                # auto logout
+                "django_auto_logout.context_processors.auto_logout_client",
             ],
         },
     },
@@ -148,3 +158,12 @@ MEDIA_URL = "/media/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# auto logout
+
+AUTO_LOGOUT={
+    'IDLE_TIME': 600,
+    # 'SESSION_TIME': timedelta(minutes=30),
+    # 'MESSAGE': 'Ths session has been closed.',
+    'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
+}
